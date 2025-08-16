@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Contact  Alice Jenkins</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Alice<span>Jenkins</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services & Pricing</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="btn-ghost">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-title">
+    <div class="container">
+      <h1>Let’s Talk About Your Book</h1>
+      <p class="subtitle">Fill out the form below and I’ll be in touch within 24 hours.</p>
+    </div>
+  </section>
+
+  <section class="contact-wrapper container grid-2">
+    <div class="contact-info">
+      <img src="alice.jpeg" alt="Alice Jenkins" class="headshot">
+      <h2>Alice Jenkins</h2>
+      <p>Book Marketing Strategist</p>
+      <p>Email: <a href="mailto:alicejenkins745@gmail.com">alicejenkins745@gmail.com</a></p>
+      <p>Response time: <strong>within 24 hours</strong></p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== UPDATED CONTACT FORM ===== -->
+<form class="contact-form" id="contactForm" action="https://formspree.io/f/mblkelqw" method="POST">
+  <label>
+    Full Name *
+    <input type="text" name="name" required />
+  </label>
+
+  <label>
+    Email *
+    <input type="email" name="email" required />
+  </label>
+
+  <label>
+    Book Title / Genre
+    <input type="text" name="book" />
+  </label>
+
+  <label>
+    Preferred Launch Date
+    <input type="date" name="deadline" />
+  </label>
+
+  <label>
+    Your Message *
+    <textarea name="message" rows="6" placeholder="Tell me about your book, goals, and any specific challenges..." required></textarea>
+  </label>
+
+  <button type="submit" class="btn-primary large">Send Inquiry</button>
+
+  <!-- confirmation message (hidden by default) -->
+  <p id="formMsg" class="form-success" style="display:none;">Your message has been successfully submitted.</p>
+</form>
+
+<!-- tiny inline script -->
+<script>
+  const form = document.getElementById('contactForm');
+  const msg  = document.getElementById('formMsg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();                       // stop normal page jump
+    const data = new FormData(form);
+    const res  = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' }
+    });
+
+    if (res.ok) {
+      msg.style.display = 'block';            // show confirmation
+      form.reset();                           // clear fields
+      setTimeout(() => location.reload(), 3000); // reload after 3s
+    } else {
+      alert('Oops! Something went wrong. Please try again.');
+    }
+  });
+</script>
+
+<style>
+/* confirmation text styling */
+.form-success {
+  margin-top: 20px;
+  font-weight: 600;
+  color: #2ecc71;
+  text-align: center;
+}
+</style>
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Alice Jenkins. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
